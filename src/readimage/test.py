@@ -31,7 +31,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
     currentdatetime = datetime.now().strftime("%m-%d-%Y:%H-%M-%S")
     # show the frame
 
-    data = pickle.dumps(image);]
+    data = pickle.dumps(image);
     serverObj.data = data
     serverObj.sendData()
 
