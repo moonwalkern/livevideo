@@ -1,14 +1,5 @@
 import socket
-import cv2
 import struct
-from datetime import datetime
-
-feed = cv2.VideoCapture(0)
-feed.set(cv2.CAP_PROP_FPS, 60.0)
-count = 0
-framerate = feed.get(5)
-currentdatetime = datetime.now().strftime("%m-%d-%Y:%H-%M-%S")
-
 
 class cameraObj():
     def __init__(self):
