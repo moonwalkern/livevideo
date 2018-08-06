@@ -4,6 +4,8 @@ from picamera import PiCamera
 from datetime import datetime
 import time
 import cv2
+import pickle
+from client import cameraObj
 
 # initialize the camera and grab a reference to the raw camera capture
 camera = PiCamera()
@@ -15,13 +17,24 @@ count = 0
 # allow the camera to warmup
 time.sleep(0.1)
 
+
+serverObj = cameraObj()
+
+serverObj.hostname = "localhost"
+serverObj.port = 9000
+
 # capture frames from the camera
 for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
     # grab the raw NumPy array representing the image, then initialize the timestamp
     # and occupied/unoccupied text
-    image = frame.array
+    image = frame.array4
     currentdatetime = datetime.now().strftime("%m-%d-%Y:%H-%M-%S")
     # show the frame
+
+    data = pickle.dumps(image);]
+    serverObj.data = data
+    serverObj.sendData()
+
     cv2.imshow("Frame", image)
     if count%10 == 0:
         filename = "frame {0}.jpg".format(currentdatetime)

@@ -1,6 +1,8 @@
 import socket
 import struct
 
+
+
 class cameraObj():
     def __init__(self):
         # Each rocket has an (x,y) position.
